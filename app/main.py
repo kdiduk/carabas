@@ -12,3 +12,16 @@ async def read_root(request: Request):
         "index.html",
         {"request": request, "title": "Title page", "username": "Kirill"}
     )
+
+
+PROBLEM_LIST = [
+    {"slug": "two-sum", "title": "Two Sum", "id": "0001", "difficulty": "00"},
+    {"slug": "reverse-string", "title": "Reverse String", "id": "0002", "difficulty": "05"},
+]
+
+@app.get("/problems", response_class=HTMLResponse)
+async def show_problems(request: Request):
+    return templates.TemplateResponse(
+        "problems.html",
+        {"request": request, "problems": PROBLEM_LIST}
+    )
